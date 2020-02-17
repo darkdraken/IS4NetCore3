@@ -1,3 +1,4 @@
+using IdentityServer4;
 using IdentityServer4.Quickstart.UI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +28,24 @@ namespace IdentityServer
                 You don’t have to check that file into your source control, it will be re-created if it is not present.
              */
             builder.AddDeveloperSigningCredential();
+
+            services.AddAuthentication()
+                .AddGoogle("Google", options =>
+                {
+                    options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+		
+                    options.ClientId = "271038709994-ah2rld207ourmj1qu2u62it8j9bovgn0.apps.googleusercontent.com";
+                    options.ClientSecret = "KES9pTgtacMbzz5KstgPdHtU";
+                });
+
+            services.AddAuthentication()
+                .AddFacebook("Facebook", options =>
+                {
+                    options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+		
+                    options.ClientId = "595912740568242";
+                    options.ClientSecret = "a0a98667147851ba8dbaff1b71a9a019";
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
