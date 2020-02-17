@@ -67,6 +67,27 @@ namespace IdentityServer
 
                     // Enable support for refresh tokens
                     AllowOfflineAccess = true
+                },
+                new Client
+                {
+                    ClientId = "angular-client",
+                    AllowedGrantTypes = GrantTypes.Implicit,
+
+                    AllowAccessTokensViaBrowser = true,
+                    RequireConsent = true,
+
+                    RedirectUris = {"http://localhost:4200"},
+
+                    PostLogoutRedirectUris = {"http://localhost:4200"},
+
+                    AllowedCorsOrigins = {"http://localhost:4200"},
+
+                    AllowedScopes = new List<string>
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "api1"
+                    }
                 }
             };
     }

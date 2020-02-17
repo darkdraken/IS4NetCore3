@@ -22,6 +22,16 @@ namespace Api
 
                     options.Audience = "api1";
                 });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AngularApp", policy =>
+                {
+                    policy.WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,6 +43,8 @@ namespace Api
             }
 
             app.UseRouting();
+
+            app.UseCors("AngularApp");
 
             // UseAuthentication: adds the authentication middleware to the pipeline so authentication will be performed automatically on every call into the host.
             app.UseAuthentication();

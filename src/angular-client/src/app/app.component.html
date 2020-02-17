@@ -1,0 +1,13 @@
+<div *ngIf="hasValidToken">
+
+  <h1>Hello from Angular with OpenId Connect</h1>
+
+  <h2>Access Token</h2>
+
+  <span>{{accessToken}}</span>
+
+  <h2>Calling API</h2>
+
+  <pre>{{ apiResult$ | async | json}}</pre>
+
+</div>
