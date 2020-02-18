@@ -1,28 +1,43 @@
-using System.Linq;
-using System.Reflection;
+using IdentityServer.Data;
+using IdentityServer.Models;
 using IdentityServer4;
 using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Mappers;
-using IdentityServer4.Quickstart.UI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Linq;
+using System.Reflection;
+using Microsoft.Extensions.Configuration;
 
 namespace IdentityServer
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
 
-            var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
-            const string connectionString = @"Data Source=(LocalDb)\MSSQLLocalDB;database=IdentityServer4;trusted_connection=yes;";
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
 
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(connectionString));
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
 
             /*  AddDeveloperSigningCredential:
 
@@ -41,8 +56,9 @@ namespace IdentityServer
                 that the host project will contain the migrations code. This is necessary since the host project is in a different assembly 
                 than the one that contains the DbContext classes.
              */
+            var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
+
             services.AddIdentityServer()
-                .AddTestUsers(TestUsers.Users)
                 .AddDeveloperSigningCredential()
                 .AddConfigurationStore(options =>
                     {
@@ -53,7 +69,8 @@ namespace IdentityServer
                     {
                         options.ConfigureDbContext = b =>
                             b.UseSqlServer(connectionString, sql => sql.MigrationsAssembly(migrationsAssembly));
-                    });
+                    })
+                .AddAspNetIdentity<ApplicationUser>();
 
             services.AddAuthentication()
                 .AddGoogle("Google", options =>

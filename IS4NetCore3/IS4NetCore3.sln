@@ -5,13 +5,13 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7D970211-FA4E-4E58-AB99-F9AC853E67CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer", "..\src\IdentityServer\IdentityServer.csproj", "{D8B31886-7A07-4A57-8EB4-50A8DC6A1004}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "..\src\IdentityServer\IdentityServer.csproj", "{D8B31886-7A07-4A57-8EB4-50A8DC6A1004}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "..\src\Client\Client.csproj", "{4337FEC7-A9E2-4716-8537-DC8EA327BD9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "..\src\Client\Client.csproj", "{4337FEC7-A9E2-4716-8537-DC8EA327BD9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "..\src\Api\Api.csproj", "{AB928D66-1F32-4568-99AC-FAAB3E41477F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "..\src\Api\Api.csproj", "{AB928D66-1F32-4568-99AC-FAAB3E41477F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcClient", "..\src\MvcClient\MvcClient.csproj", "{0A0D6940-ADFA-4AAC-AC2B-E170C5C5BED2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcClient", "..\src\MvcClient\MvcClient.csproj", "{0A0D6940-ADFA-4AAC-AC2B-E170C5C5BED2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
