@@ -1,4 +1,4 @@
-# IS4NetCore3
+# Identity Server 4 with .Net Core 3.1
 
 In this repo youll find different implementations for Identity server and clients.
 
