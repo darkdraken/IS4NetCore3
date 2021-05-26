@@ -2,7 +2,7 @@
 
 In this repo youll find different implementations for Identity server and clients.
 
-The branches are in order and each one has is based on the previous so you can verify what's the difference between them.
+The branches are in order and each one is based on the previous so you can check what's the difference between them.
 
 ## Identity Server 4 Demos
 
